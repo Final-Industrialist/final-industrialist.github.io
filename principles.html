@@ -10,15 +10,17 @@
   <a href=".."><- Back</a>
   <h1>Principles of Deep Learning Without Tears</h1>
 
-  <blockquote>Ludwig Boltzmann, who spent much of his life studying statistical mechanics, died in 1906, by his own hand. Paul Ehrenfest, carrying on the work, died similarly in 1933. Now it is our turn to study statistical mechanics.
+  <blockquote><i>Ludwig Boltzmann, who spent much of his life studying statistical mechanics, died in 1906, by his own hand. Paul Ehrenfest, carrying on the work, died similarly in 1933. Now it is our turn to study statistical mechanics.</i>
   
   - David L. Goodstein, States of Matter</blockquote>
 
-  <p>This is going to be a set of notes about the book "The Principles of Deep Learning Theory" (PDLT) which you can follow along in <a href="https://arxiv.org/abs/2106.10165">preprint form</a> or you can buy a digital or real copy from the authors if you're feeling charitable!</p>
+  <p>This is going to be a set of notes about the book "The Principles of Deep Learning Theory" (PDLT) which you can follow along in <a href="https://arxiv.org/abs/2106.10165">preprint form</a> or you can buy a digital or real copy from the authors, if you're feeling charitable!</p>
 
-  <p>PDLT is written by theoretical physicists working in Statistical Physics to provide a rigorous approach to some foundational questions around classic deep neural network (that is multilayer perceptrons). In writing a "without tears" guide I'm providing a high-level summary of pragmatic results for myself and also cutting through some pretty intense mathematics to communicate a few core concepts of analysis once again for practical leverage to people who don't have a decade to waste studying mathematics or theoretical physics. The book can really be split into two halves, the first half is concerned with "statics" that is given an arbitrary DNN with a distribution on its parameters what can we say about the statistics of its activations as we feed it data and then second is naturally concerned with "dynamics" that is, what happens to these statistics as we train networks what can be said as they converge? I'll provide an overview of both.</p>
+  <p>PDLT is written by theoretical physicists working in Statistical Physics to provide a rigorous approach to some foundational questions around classic deep neural network (that is multilayer perceptrons). In writing a "without tears" guide I'm providing a high-level summary of pragmatic results for myself and also cutting through some pretty intense mathematics to communicate a few core concepts of analysis, once again for practical leverage, to people who don't have years to waste studying graduate-level mathematics or theoretical physics.
+      
+The book can really be split into two halves, the first half is concerned with "statics" that is given an arbitrary DNN with a distribution on its parameters what can we say about the statistics of its activations as we feed it data? And, the second half is naturally concerned with "dynamics" that is, what happens to these activation statistics as we train networks and they begin to  converge? I'll be providing an overview of both.</p>
 
-  <p>A word to the wise, if you want to generalise these results yourself to other architectures, there is no substitute for picking up the book and mastering the methods within it - but what you end up producing with that kind of dedication will probably be a novel contribution to deep learning theory, so you've been warned!</p>
+  <p><i>A word to the wise</i>, if you want to generalise these results yourself to other architectures, there is no substitute for picking up the book and mastering the methods within it - but what you end up producing with that kind of dedication will probably be a novel contribution to deep learning theory, so you've been warned!</p>
 
   <h2>Weight Distributions and Criticality</h2>
 
