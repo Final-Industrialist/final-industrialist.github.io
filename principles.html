@@ -19,9 +19,9 @@
   <p>PDLT is written by theoretical physicists working in Statistical Physics to provide a rigorous approach to some foundational questions around classic deep neural networks (that is multilayer perceptrons). In writing a "without tears" guide I'm providing a high-level summary of pragmatic results for myself and also cutting through some pretty intense mathematics to communicate a few core concepts of analysis, once again for practical leverage, to people who don't have years to waste studying graduate-level mathematics or theoretical physics.</p>
 
 <p>
-The book can really be split into two halves, the first half is concerned with "statics" that is given an arbitrary DNN with a distribution on its parameters what can we say about the statistics of its activations as we feed it data? And, the second half is naturally concerned with "dynamics" that is, what happens to these activation statistics as we train networks and they begin to  converge? I'll be providing an overview of both.</p>
+The book can really be split into two halves, the first half is concerned with "statics" that is given an arbitrary DNN with a distribution on its parameters what can we say about the statistics of its pre-activations as we feed it data? And, the second half is naturally concerned with "dynamics" that is, what happens to these pre-activation statistics as we train networks and they begin to  converge? I'll be providing an overview of both.</p>
 
-  <p><i>A word to the wise</i>, if you want to generalise these results yourself to other architectures, there is no substitute for picking up the book and mastering the methods within it - but what you end up producing with that kind of dedication will probably be a novel contribution to deep learning theory, so you've been warned!</p>
+  <p><i>A word to the wise</i>, if you want to generalise these results yourself to other architectures, there is no substitute for picking up the book and mastering the methods within it - but what you may end up producing with that kind of dedication could be a novel contribution to deep learning theory, so you've been warned!</p>
 
   <h2>Weight Distributions and Criticality</h2>
 
@@ -35,8 +35,32 @@ The book can really be split into two halves, the first half is concerned with "
         <li>Gaussian/Normally Distributed</li>
         <li>Indepedent from each other</li>
         <li>Zero mean</li>
-        <li>Have a global standard deviation \(C_W\) for weights and \(C_b\) for biases</li>
+        <li>Have a global standard deviation \(C_W/n_{\ell-1}\) for weights and \(C_b\) for biases</li>
     </ol>
+
+    <p>Note: the \(n_{\ell-1}\) in the weight standard deviation is the number of neurons in the previous layer.</p>
+
+    <p>In particular, we are interested in computing the distribution of pre-activations \[z_\ell=b_\ell+W_\ell x_{\ell-1}\] in layer \(\ell\) conditional on the dataset distribution \(\mathfrak{D}\) denoted $\(p(z_\ell\|\mathfrak{D})\).</p>
+
+    <h3>Correlators and Friends</h3>
+
+    <p>Characterizing arbitrary distributions given by repeated non-linear maps on an arbitrary data distribution is a challenge. Generally, we don't attempt to get an analytic form of these distributions, but instead work with special infinite sequences which act as a kind of fingerprint of the distributions in question. The two infinite sequences we rely on in the book are called "M-point correlators" and "connected correlators" by theoretical physicists or "moments" and "cumulants" respectively by mathematicians - this is only true in the special case of the book where we're measuring correlators for i.i.d distributions.</p>
+    
+    <p>Moments are generally defined as \(\mu_n=\mathbb{E}[X^n]\), that is if we take a sample \(x\) from \(X\), the mean of \(n^\text{th}\) power of samples \(x\) is the \(n^\text{th}\) order moment.</p>
+
+    <p>Cumulants are a little harder to define, the \(n^\text{th}\) order cumulant \(\kappa_n\) is given by \(n^\text{\th}\) polynomial coefficient of the Taylor series expansion of \(\log\mathbb{E}[e^{tX}]\). The exact relationship is given by <a href="https://ocw.mit.edu/courses/18-366-random-walks-and-diffusion-fall-2006/resources/lec02/">a groovy matrix determinant</a>. For convenience, I'll write out the first 6, which are generally as much as the book deems necessary to reach its conclusions:
+    
+    \[
+        \begin{align}
+\kappa_1 &= \mu_1 \\
+\kappa_2 &= \mu_2 - \mu_1^2 \\
+\kappa_3 &= \mu_3 - 3\mu_2\mu_1 + 2\mu_1^3 \\
+\kappa_4 &= \mu_4 - 4\mu_3\mu_1 - 3\mu_2^2 + 12\mu_2\mu_1^2 - 6\mu_1^4 \\
+\kappa_5 &= \mu_5 - 5\mu_4\mu_1 - 10\mu_3\mu_2 + 20\mu_3\mu_1^2 + 30\mu_2^2\mu_1 - 60\mu_2\mu_1^3 + 24\mu_1^5 \\
+\kappa_6 &= \mu_6 - 6\mu_5\mu_1 - 15\mu_4\mu_2 + 30\mu_4\mu_1^2 - 10\mu_3^2 + 120\mu_3\mu_2\mu_1 \
+&\quad - 120\mu_3\mu_1^3 + 30\mu_2^3 - 270\mu_2^2\mu_1^2 + 360\mu_2\mu_1^4 - 120\mu_1^6
+\end{align}
+    \]</p>
     
   <h2>Training and the Neural Tangent Kernel</h2>
 </body>
