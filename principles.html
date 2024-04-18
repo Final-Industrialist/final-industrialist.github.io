@@ -38,17 +38,17 @@ The book can really be split into two halves, the first half is concerned with "
         <li>Have a global standard deviation \(C_W/n_{\ell-1}\) for weights and \(C_b\) for biases</li>
     </ol>
 
-    <p>Note: the \(n_{\ell-1}\) in the weight standard deviation is the number of neurons in the previous layer.</p>
+    <p>Where \(n_{\ell-1}\) in the weight standard deviation is the number of neurons in the previous layer.</p>
 
-    <p>In particular, we are interested in computing the distribution of pre-activations \[z_\ell=b_\ell+W_\ell x_{\ell-1}\] in layer \(\ell\) conditional on the dataset distribution \(\mathfrak{D}\) denoted $\(p(z_\ell\|\mathfrak{D})\).</p>
+    <p>In particular, we are interested in computing the distribution of pre-activations \[z_\ell=b_\ell+W_\ell x_{\ell-1}\] in layer \(\ell\) conditional on the dataset distribution \(\mathfrak{D}\) denoted \(p(z_\ell\|\mathfrak{D})\).</p>
 
     <h3>Correlators and Friends</h3>
 
-    <p>Characterizing arbitrary distributions given by repeated non-linear maps on an arbitrary data distribution is a challenge. Generally, we don't attempt to get an analytic form of these distributions, but instead work with special infinite sequences which act as a kind of fingerprint of the distributions in question. The two infinite sequences we rely on in the book are called "M-point correlators" and "connected correlators" by theoretical physicists or "moments" and "cumulants" respectively by mathematicians - this is only true in the special case of the book where we're measuring correlators for i.i.d distributions.</p>
+    <p>Characterizing arbitrary distributions given by repeated non-linear maps on an arbitrary data distribution is a challenge. Generally, we don't attempt to get the closed form of these distributions, but instead work with special infinite sequences which act as a kind of fingerprint of the distributions in question. The two infinite sequences we rely on in the book are called "M-point correlators" and "connected correlators" by theoretical physicists or "moments" and "cumulants" respectively by mathematicians - note: this correspondance is only true in the special case of the book where we're measuring correlators for i.i.d distributions.</p>
     
-    <p>Moments are generally defined as \(\mu_n=\mathbb{E}[X^n]\), that is if we take a sample \(x\) from \(X\), the mean of \(n^\text{th}\) power of samples \(x\) is the \(n^\text{th}\) order moment.</p>
+    <p>Moments are generally defined as \(\mu_n=\mathbb{E}[X^n]\), that is if we take a sample \(x\) from \(X\), the mean of the \(n^\text{th}\) power of samples \(x\) is the \(n^\text{th}\) order moment.</p>
 
-    <p>Cumulants are a little harder to define, the \(n^\text{th}\) order cumulant \(\kappa_n\) is given by \(n^\text{\th}\) polynomial coefficient of the Taylor series expansion of \(\log\mathbb{E}[e^{tX}]\). The exact relationship is given by <a href="https://ocw.mit.edu/courses/18-366-random-walks-and-diffusion-fall-2006/resources/lec02/">a groovy matrix determinant</a>. For convenience, I'll write out the first 6, which are generally as much as the book deems necessary to reach its conclusions:
+    <p>Cumulants are a little harder to define, the \(n^\text{th}\) order cumulant \(\kappa_n\) is given by the \(n^\text{th}\) polynomial coefficient of the Taylor series expansion of \(\log\mathbb{E}[e^{tX}]\). The exact relationship is given by <a href="https://ocw.mit.edu/courses/18-366-random-walks-and-diffusion-fall-2006/resources/lec02/">a groovy matrix determinant</a>. For convenience, I'll write out the first 6, which are generally as much as the book deems necessary to reach its conclusions:
     
     \[
         \begin{align}
@@ -57,8 +57,7 @@ The book can really be split into two halves, the first half is concerned with "
 \kappa_3 &= \mu_3 - 3\mu_2\mu_1 + 2\mu_1^3 \\
 \kappa_4 &= \mu_4 - 4\mu_3\mu_1 - 3\mu_2^2 + 12\mu_2\mu_1^2 - 6\mu_1^4 \\
 \kappa_5 &= \mu_5 - 5\mu_4\mu_1 - 10\mu_3\mu_2 + 20\mu_3\mu_1^2 + 30\mu_2^2\mu_1 - 60\mu_2\mu_1^3 + 24\mu_1^5 \\
-\kappa_6 &= \mu_6 - 6\mu_5\mu_1 - 15\mu_4\mu_2 + 30\mu_4\mu_1^2 - 10\mu_3^2 + 120\mu_3\mu_2\mu_1 \
-&\quad - 120\mu_3\mu_1^3 + 30\mu_2^3 - 270\mu_2^2\mu_1^2 + 360\mu_2\mu_1^4 - 120\mu_1^6
+\kappa_6 &= \mu_6 - 6\mu_5\mu_1 - 15\mu_4\mu_2 + 30\mu_4\mu_1^2 - 10\mu_3^2 + 120\mu_3\mu_2\mu_1 - 120\mu_3\mu_1^3 + 30\mu_2^3 - 270\mu_2^2\mu_1^2 + 360\mu_2\mu_1^4 - 120\mu_1^6
 \end{align}
     \]</p>
     
