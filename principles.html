@@ -44,7 +44,7 @@ The book can really be split into two halves, the first half is concerned with "
 
     <h3>Correlators and Friends</h3>
 
-    <p>Characterizing arbitrary distributions given by repeated non-linear maps on an arbitrary data distribution is a challenge. Generally, we don't attempt to get the closed form of these distributions, but instead work with special infinite sequences which act as a kind of fingerprint of the distributions in question. The two infinite sequences we rely on in the book are called "M-point correlators" and "connected correlators" by theoretical physicists or "moments" and "cumulants" respectively by mathematicians - note: this correspondance is only true in the special case of the book where we're measuring correlators for i.i.d distributions.</p>
+    <p>Characterizing arbitrary distributions given by repeated non-linear maps on an arbitrary data distribution is a challenge. Generally, we don't attempt to get the closed form of these distributions, but instead work with special infinite sequences which act as a kind of fingerprint of the distributions in question. The two infinite sequences we rely on in the book are called "M-point correlators" and "connected correlators" by theoretical physicists or "moments" and "cumulants" respectively by mathematicians - note: this correspondence is only true in the special case of the book where we're measuring correlators for i.i.d distributions.</p>
     
     <p>Moments are generally defined as \(\mu_n=\mathbb{E}[X^n]\), that is if we take a sample \(x\) from \(X\), the mean of the \(n^\text{th}\) power of samples \(x\) is the \(n^\text{th}\) order moment.</p>
 
@@ -61,7 +61,21 @@ The book can really be split into two halves, the first half is concerned with "
 \end{align}
     \]</p>
 
-    <p>Now we have these tools under our belt </p>
+    <h3>Criticality</h3>
+
+    DNNs have one of three modes of behavior from the perspective of the second order moments and cumulants:
+
+    <ul>
+        <li>Exponential collapse, the variance of the pre-activation collapses exponentially to 0 with each layer to a single point, destroying information</li>
+        <li>Exponential explosion, the variance of the pre-activation vector explodes exponentially to \(\infty\) with each layer, creating numerical instability</li>
+        <li>Criticality, the variance of the preactivation vector is preserved from layer to layer, keeping the network stable</li>
+    </ul>
+
+    It needs to be highlighted here that you won't see a "full" collapse or explosion in the wild because we are dealing with finite networks, however, this kind of behavior can tell you something about how your network is choosing to operate on its information.
+
+    <h3>Non-Gaussianity</h3>
+
+    
     
   <h2>Training and the Neural Tangent Kernel</h2>
 </body>
