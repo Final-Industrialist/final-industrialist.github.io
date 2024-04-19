@@ -1,1 +1,31 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes for The Final Industry</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <a href="..">← Back</a>
+  <h1>Attention and Transposition</h1>
+
+  This idea is a post-mortem on a set of observations about the attention mechanism and its relationship to transposition. The reason that its dead is that some of the mechanisms that I propose here are computationally infeasible, but the math is very pretty so for that reason alone, I've decided to write it up.
+
+  <h2>Attention isn't what you need</h2>
+
+  <p>What got me thinking deeply about this problem was a 2021 paper <a href="https://arxiv.org/abs/2105.02723">Do you even need attention?</a>, they show in the image domain that the famous vision transformer ViT can be given a run for its money on ImageNet by a stack of fully connected layers with intermediate transpositions on the same tokenized image chunks.</p>
+
+  <p>This might not be all that surprising, seeing as the attention mechanism was designed for NLP. But what the author of <i>Do you even need attention?</i> may have inadvertantly done is actually reinvented the attention mechanism, allow me to explain:</p>
+
+  <h3>Attention as Transposition</h3>
+
+  <p>Life in an attention mechanism is all about the action of three matrices, keys \(K\), queries \(Q\) and values \(V\) on an arbitrary length list of "tokens" ie. vector embeddings of semantic chunks. For every token we compute it's key, it's query and it's value using the corresponding matrix - we then take the matrix product between all of the keys and queries transposed - this is then normalized, softmax'd and matrix right-multiplied with the values.</p>
+
+  <p>The semantic meaning of this is generally taken to be \(\text{softmax}(KQ^\intercal)\) is the probability that two tokens co-occur given all other tokens available in the token list. The combination with the value matrix \(V\) is then said to represent the "where to next" as governed by positional co-occurence - so the \(V\) is the positionally sensitive part of attention, that is watching for high-probability co-occurences at particular relative distance in the sequence and routing the attention head accordingly.</p>
+
+  <p></p>
+  
+</body>
+</html>
